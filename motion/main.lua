@@ -40,11 +40,11 @@ function love.update()
 
     mover:update()
 	mover:checkBoundaries()
-	--mover:checkRectangle()
+	mover:checkRectangle()
 
 	wmover:update()
 	wmover:checkBoundaries()
-	--wmover:checkRectangle()
+	wmover:checkRectangle()
 end
 
 function love.draw()

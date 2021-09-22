@@ -11,14 +11,16 @@ function love.load()
 	location = Vector:create(100, height/2)
 	wlocation = Vector:create(500, height/2)
 	velocity = Vector:create(0, 0)
-	mover = Mover:create(location, velocity)
+
+	mover = Mover:create(location, velocity, 5)
+	mover.size = 30
 	wmover = Mover:create(wlocation, velocity, 5)
 	wmover.size = 30
 
 	wind = Vector:create(0.01, 0)
 	isWind = false
 	gravity = Vector:create(0, 0.01)
-	isGravity = false
+	isGravity = true
 	floating = Vector:create(0, -0.02)
 	isFloationg = false
 end
@@ -29,20 +31,20 @@ function love.update()
 	mover:applyForce(wind)
 	wmover:applyForce(wind)
 
-	friction = (mover.velocity  * -1):norm()
+	--[[friction = (mover.velocity  * -1):norm()
 	if friction then 
 		friction:mul(0.005)
 		mover:applyForce(friction)
 		wmover:applyForce(friction)
-	end
+	end]]
 
     mover:update()
 	mover:checkBoundaries()
-	mover:checkRectangle()
+	--mover:checkRectangle()
 
 	wmover:update()
 	wmover:checkBoundaries()
-	wmover:checkRectangle()
+	--wmover:checkRectangle()
 end
 
 function love.draw()
@@ -58,11 +60,11 @@ function love.draw()
 
 	love.graphics.print(tostring(mover.velocity) ..
 								 mover.location.x + mover.size, 
-								 mover.location.y)
+								 140)
 
 	love.graphics.print(tostring(wmover.velocity) ..
 								 wmover.location.x + wmover.size, 
-								 wmover.location.y)
+								 500)
 
 	love.graphics.print("w: " .. tostring(isWind) .. 
 						" g: " .. tostring(isGravity) ..

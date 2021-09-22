@@ -17,20 +17,40 @@ function Mover:applyForce(force)
 end
 
 function Mover:checkBoundaries()
-    if self.location.x > width - self.size then 
-        self.location.x = width - self.size
+    --[[local border_x = width - self.size
+    local border_y = height - self.size
+
+   if self.location.x > border_x then 
+        self.location.x = border_x - 1
         self.velocity.x = -1 * self.velocity.x
     elseif self.location.x < self.size then 
         self.location.x = self.size
         self.location.x = -1 * self.velocity.x
     end
-    if self.location.y > height - self.size then 
-        self.location.y = height - self.size
+
+    if self.location.y > border_y then 
+        self.location.y = border_y - 1
         self.velocity.y = -1 * self.velocity.y
     elseif self.location.y < self.size then 
-        self.location.y = self.size
+        self.location.y = self.size 
+        self.location.y = -1 * self.velocity.y
+    end]]
+
+    if self.location.x > width - self.size then 
+        self.location.x = width - self.size 
+        self.velocity.x = -1 * self.velocity.x
+    elseif self.location.x < self.size then 
+        self.location.x = self.size 
+        self.location.x = -1 * self.velocity.x
+    end
+    if self.location.y > height - self.size then 
+        self.location.y = height - self.size 
+        self.velocity.y = -1 * self.velocity.y
+    elseif self.location.y < self.size then 
+        self.location.y = self.size 
         self.location.y = -1 * self.velocity.y
     end
+
 end
 
 function Mover:checkRectangle() 
@@ -46,8 +66,8 @@ function Mover:checkRectangle()
     if self.location.x + self.size > 400 then 
         friction = (self.velocity  * -1):norm()
         if friction then 
-            friction:mul(0.005)
-            mover:applyForce(friction)
+            friction:mul(-0,005)
+            wmover:applyForce(friction)
         end
     end
 end

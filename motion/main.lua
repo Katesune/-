@@ -1,5 +1,6 @@
 require("vector")
 require("mover")
+require("rectangle")
 
 function love.load()
 	width = love.graphics.getWidth()
@@ -8,7 +9,7 @@ function love.load()
 									 128 / 255, 
 									 128 / 255)
 
-	location = Vector:create(100, height/2)
+	location = Vector:create(300, height/2)
 	wlocation = Vector:create(500, height/2)
 	velocity = Vector:create(0, 0)
 
@@ -17,10 +18,13 @@ function love.load()
 	wmover = Mover:create(wlocation, velocity, 5)
 	wmover.size = 30
 
+	rec_1 = Rectangle:create(1, 300)
+	rec_2 = Rectangle:create(421,680)
+
 	wind = Vector:create(0.01, 0)
 	isWind = false
 	gravity = Vector:create(0, 0.01)
-	isGravity = true
+	isGravity = false
 	floating = Vector:create(0, -0.02)
 	isFloationg = false
 end
@@ -40,23 +44,31 @@ function love.update()
 
     mover:update()
 	mover:checkBoundaries()
-	mover:checkRectangle()
+	mover:checkRectangleOne(rec_1)
+	mover:checkRectangleSec(rec_2)
 
 	wmover:update()
 	wmover:checkBoundaries()
-	wmover:checkRectangle()
+	wmover:checkRectangleOne(rec_1)
+	wmover:checkRectangleSec(rec_2)
 end
 
 function love.draw()
-	local r, g, b, a = love.graphics.getColor()
-	love.graphics.setColor(0, 199/255, 90/255, 0.5)
-	love.graphics.rectangle("fill", 0, 0, 400, 600)
-	love.graphics.setColor(0, 230/255, 52/255, 0.5)
-	love.graphics.rectangle("fill", 400, 0, 400, 600)
-	love.graphics.setColor(r, g, b, a)
+	-- local r, g, b, a = love.graphics.getColor()
+
+	-- love.graphics.setColor(0, 199/255, 90/255, 0.5)
+	-- love.graphics.rectangle("fill", 0, 0, 400, 600)
+	-- love.graphics.setColor(0, 230/255, 52/255, 0.5)
+	-- love.graphics.rectangle("fill", 400, 0, 400, 600)
+	
+
+
+	-- love.graphics.setColor(r, g, b, a)
 
 	mover:draw()
 	wmover:draw()
+	rec_1:draw()
+	rec_2:draw()
 
 	love.graphics.print(tostring(mover.velocity) ..
 								 mover.location.x + mover.size, 

@@ -53,21 +53,28 @@ function Mover:checkBoundaries()
 
 end
 
-function Mover:checkRectangle() 
+function Mover:checkRectangleOne(rec_first) 
     
-    if self.location.x + self.size < 400 then 
-        friction = (self.velocity  * -1):norm()
-        if friction then 
-            friction:mul(0.005)
-            mover:applyForce(friction)
+    if self.location.x - self.size > rec_first.left and self.location.x - self.size < rec_first.left + rec_first.width then 
+        if self.location.y - self.size > rec_first.top and self.location.y - self.size < rec_first.top + rec_first.height then 
+            friction = (self.velocity  * -1):norm()
+            if friction then 
+                friction:mul(0.005)
+                mover:applyForce(friction)
+            end
         end
     end 
+end
 
-    if self.location.x + self.size > 400 then 
-        friction = (self.velocity  * -1):norm()
-        if friction then 
-            friction:mul(-0,005)
-            wmover:applyForce(friction)
+function Mover:checkRectangleSec(rec_sec) 
+
+    if self.location.x - self.size > rec_sec.left and self.location.x - self.size < rec_sec.left + rec_sec.width then 
+        if self.location.y - self.size > rec_sec.top and self.location.y - self.size < rec_sec.top + rec_sec.height then 
+            friction = (self.velocity  * -1):norm()
+            if friction then 
+                friction:mul(-0,005)
+                wmover:applyForce(friction)
+            end
         end
     end
 end

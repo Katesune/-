@@ -25,9 +25,6 @@ function FlowMap:init()
 			--local thetax = xoff
 			--local thetay = yoff * transform(thetax, yoff)
 
-			--local thetax = xoff * xoff - yoff * yoff + 0.1
-			--local thetay = 2 * xoff * yoff + 0.1
-
 			local radius = 300
 			--local theta = xoff * (math.sqrt(5) + 1)/2
 

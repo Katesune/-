@@ -53,7 +53,7 @@ function Particle:draw()
     r, g, b, a = love.graphics.getColor()
     love.graphics.setColor(255/255, 255/255, 255/255, 1)
    if self.mode == 1 or self.mode == 3 then
-        love.graphics.rectangle("fill", self.location.x, self.location.y, self.a, self.a)
+        love.graphics.rectangle("line", self.location.x, self.location.y, self.a, self.a)
    end
 
    if self.mode == 2 then

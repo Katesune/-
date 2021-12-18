@@ -51,3 +51,5 @@ function love.draw()
         v:draw()
     end
 end
+
+math.randomseed(os.time())

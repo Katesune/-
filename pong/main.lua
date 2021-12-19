@@ -1,6 +1,5 @@
 require("vector")
 require("mover")
-require("rectangle")
 require("scores")
 require("racket")
 

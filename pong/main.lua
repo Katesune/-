@@ -2,6 +2,7 @@ require("vector")
 require("mover")
 require("scores")
 require("racket")
+require("rectangle")
 
 function love.load()
 
